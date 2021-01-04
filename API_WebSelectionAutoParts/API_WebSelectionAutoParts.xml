@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_WebSelectionAutoParts</name>
+    </assembly>
+    <members>
+        <member name="M:API_WebSelectionAutoParts.Controllers.WeatherForecastController.GetCountries">
+            <summary>
+            Тестируем возвращение результатов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_WebSelectionAutoParts.Controllers.WeatherForecastController.getCategories">
+            <summary>
+            Тестируем возвращение категорий
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_WebSelectionAutoParts.Controllers.WeatherForecastController.Get">
+            <summary>
+            Тестовый метод
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_WebSelectionAutoParts.Controllers.WeatherForecastController.GetName(System.String)">
+             <summary>
+             Получить имя пользователя
+             </summary>
+             <remarks>
+             Пример запроса:
+            
+                 GET
+                 {
+                    "name": "value"
+                 }
+            
+             </remarks>
+             <returns>Имя пользователя</returns>
+             <response code="200">Возвращае успешно добавленный продукт</response>
+             <response code="400">Пустой параметр name</response>              
+        </member>
+    </members>
+</doc>

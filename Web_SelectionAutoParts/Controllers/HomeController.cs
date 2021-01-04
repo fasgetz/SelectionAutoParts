@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WebSelectionAutoParts.Models;
+using Web_SelectionAutoParts.Models;
 
-namespace WebSelectionAutoParts.Controllers
+namespace Web_SelectionAutoParts.Controllers
 {
     public class HomeController : Controller
     {

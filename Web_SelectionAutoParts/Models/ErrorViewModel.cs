@@ -1,6 +1,6 @@
 using System;
 
-namespace WebSelectionAutoParts.Models
+namespace Web_SelectionAutoParts.Models
 {
     public class ErrorViewModel
     {
