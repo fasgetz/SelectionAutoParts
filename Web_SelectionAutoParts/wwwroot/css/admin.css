@@ -1,0 +1,8 @@
+.header-admin {
+  background: red;
+  height: 50px;
+}
+
+.vsm-link-active {
+  border-left: 3px solid blue;
+}
