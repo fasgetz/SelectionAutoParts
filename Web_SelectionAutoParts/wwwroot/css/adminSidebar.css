@@ -1,0 +1,136 @@
+/* Сайдбар админ панели */
+.vsm-badge {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+    .vsm-badge.default-badge {
+        padding: 0px 6px;
+        font-size: 12px;
+        border-radius: 3px;
+        height: 20px;
+        line-height: 20px;
+        font-weight: 600;
+        text-transform: uppercase
+    }
+
+    .vsm-badge.default-badge {
+        color: #262626;
+        background-color: #e0e0e0
+    }
+
+
+.vsm-header {
+    color: rgba(38,38,38,0.7)
+}
+
+.vsm-header {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    text-transform: uppercase
+}
+
+.fa-arrow-right {
+    color: black;
+    width: 30px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: 0.3s -webkit-transform;
+    transition: 0.3s -webkit-transform;
+    transition: 0.3s transform;
+    transition: 0.3s transform, 0.3s -webkit-transform
+}
+
+    .fa-arrow-right.open-arrow {
+        -webkit-transform: translateY(-50%) rotate(90deg);
+        transform: translateY(-50%) rotate(90deg)
+    }
+
+
+.admin-menu {
+    position: fixed;
+    border-right: 1px solid grey;
+    height: 100%;
+    overflow: auto;
+}
+
+
+
+
+.vsm-link-active {
+    border-left: 3px solid blue;
+}
+
+.collapse-btn {
+    display: none;
+}
+
+.vsm-item:hover:not(.open-item) {
+    color: #262626;
+    background-color: #f2f2f2;
+}
+
+.vsm-link {
+    position: relative;
+    display: block;
+    z-index: 20;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px;
+    line-height: 30px;
+    text-decoration: none;
+    color: black;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
+}
+
+.vsm-item:not(.first-item) {
+    background: #e3e3e3;
+}
+
+
+.open-item {
+    color: white;
+    background-color: #4285f4;
+}
+
+.vsm-item .open-item {
+    background-color: #a2c4fa;
+}
+
+    .vsm-item .open-item .vsm-item {
+        background-color: #d8bfd8;
+    }
+
+
+.open-item > a > span {
+    color: white;
+}
+
+.vsm-icon {
+    background-color: #bbc5d6;
+    font-size: 16px;
+    padding: 10px;
+    color: black;
+}
+
+
+
+@media screen and (max-width: 767.98px) {
+
+    .admin-menu {
+        position: relative;
+        width: 100% !important;
+        border-right: none;
+    }
+}

@@ -1,26 +1,255 @@
 ﻿<!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ADMIN PANEL</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    
+    <link href="~/css/adminSidebar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 </head>
 <body>
-    <section>
-        <h1>ADMIN PANEL</h1>
-    </section>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-12 p-0" id="app" :class="[{'collapsed' : collapsed}]">
+                <div class="admin-menu w-25">
+                    <sidebar-menu :collapsed="collapsed" :menu="menu" :theme="selectedTheme" :show-one-child="true"
+                                  v-on:collapse="onCollapse" v-on:itemclick="onitemclick"></sidebar-menu>
+                </div>
+            </div>
+            <div class="col h-100">
+                <div id="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- VUE -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <script src="~/js/VueSidebarMenu.js"></script>
+
+    <script>
+        Vue.use(sidebarmenu.default);
+        const separator = {
+            template: `<hr style="border-color: rgba(0, 0, 0, 0.1); margin: 20px;">`
+        };
+
+        var app = new Vue({
+            el: "#app",
+            mounted() {
+                axios.get(("/admin/main"))
+                    .then(response => {
+                        $("#content").html(response.data)
+                        $(".vsm-link").first().addClass("vsm-link-active")
+                    });
+            },
+            methods: {
+                onCollapse(collapsed) {
+                    console.log(collapsed)
+                    this.collapsed = collapsed
+                },
+                onitemclick(event, item) {
+
+                    // Если ввели адрес, то прогрузить страницу в AJAX
+                    if (item.addressHref) {
+                        axios.get((item.addressHref))
+                            .then(response => {
+                                $("#content").html(response.data)
+                            });
+                    }
+
+                    $(".vsm-link").removeClass("vsm-link-active")
+                    $(".vsm-item").removeClass("vsm-link-active")
+                    event.target.parentNode.classList.toggle('vsm-link-active')
+                }
+            },
+            data: {
+                themes: ['', 'white-theme'],
+                selectedTheme: 'white-theme',
+                collapsed: false,
+                menu: [
+                    {
+                        header: true,
+                        title: 'Функционал администратора'
+                    },
+                    {
+                        title: 'Главная',
+                        addressHref: '/admin/main',
+                        icon: 'fa fa-cog',
+                        badge: {
+                            text: 'new',
+                            class: 'default-badge'
+                        }
+                    },
+                    {
+                        title: 'Категории запчастей',
+                        addressHref: '/admin/categories',
+                        icon: 'fa fa-cog',
+                        badge: {
+                            text: 'new',
+                            class: 'default-badge'
+                        }
+                    },
+                    {
+                        href: '#page',
+                        title: 'Dropdown Page',
+                        icon: 'fa fa-list-ul',
+                        child: [
+                            {
+                                href: 'https://yandex.ru',
+                                title: 'Sub Page 01',
+                                icon: 'fa fa-file-alt'
+                            },
+                            {
+                                href: 'https://mail.ru',
+                                title: 'Sub Page 02',
+                                icon: 'fa fa-file-alt'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Multiple Level',
+                        icon: 'fa fa-list-alt',
+                        child: [
+                            {
+                                title: 'page'
+                            },
+                            {
+                                title: 'Level 2 ',
+                                child: [
+                                    {
+                                        title: 'page'
+                                    },
+                                    {
+                                        title: 'Page'
+                                    }
+                                ]
+                            },
+                            {
+                                title: 'Page'
+                            },
+                            {
+                                title: 'Another Level 2',
+                                child: [
+                                    {
+                                        title: 'Level 3',
+                                        child: [
+                                            {
+                                                title: 'Page'
+                                            },
+                                            {
+                                                title: 'Page'
+                                            },
+                                            {
+                                                title: 'Page'
+                                            },
+                                            {
+                                                title: 'Page'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        href: '#disabled',
+                        title: 'Disabled page',
+                        icon: 'fa fa-lock',
+                        disabled: true
+                    },
+                    {
+                        header: true,
+                        component: separator,
+                        visibleOnCollapse: true
+                    },
+                    {
+                        header: true,
+                        title: 'Another Example'
+                    },
+                    {
+                        addressHref: '/admin/test',
+                        title: 'TEST !!! !!! !!!',
+                        icon: 'fa fa-lock',
+                        disabled: false
+                    },
+                    {
+                        title: 'Badge',
+                        icon: 'fa fa-cog',
+                        badge: {
+                            text: 'new',
+                            class: 'default-badge'
+                        }
+                    },
+                    {
+                        href: '#page',
+                        title: 'Dropdown Page',
+                        icon: 'fa fa-list-ul',
+                        child: [
+                            {
+                                href: '#sub-page-1',
+                                title: 'Sub Page 01',
+                                icon: 'fa fa-file-alt'
+                            },
+                            {
+                                href: '#sub-page-2',
+                                title: 'Sub Page 02',
+                                icon: 'fa fa-file-alt'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Multiple Level',
+                        icon: 'fa fa-list-alt',
+                        child: [
+                            {
+                                title: 'page'
+                            },
+                            {
+                                title: 'Level 2 ',
+                                child: [
+                                    {
+                                        title: 'page'
+                                    },
+                                    {
+                                        title: 'Page'
+                                    }
+                                ]
+                            },
+                            {
+                                title: 'Page'
+                            },
+                            {
+                                title: 'Another Level 2',
+                                child: [
+                                    {
+                                        title: 'Level 3',
+                                        child: [
+                                            {
+                                                title: 'Page'
+                                            },
+                                            {
+                                                title: 'Page'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        })
+
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

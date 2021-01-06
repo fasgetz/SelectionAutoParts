@@ -10,7 +10,22 @@ namespace Web_SelectionAutoParts.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return PartialView();
+        }
+
+        public IActionResult Main()
+        {
+            return PartialView();
+        }
+
+        public IActionResult test()
+        {
+            return PartialView();
+        }
+
+        public IActionResult categories()
+        {
+            return PartialView();
         }
     }
 }
