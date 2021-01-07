@@ -6,18 +6,107 @@
 
 <div id="application">
     <p>{{message}}</p>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <message-comp message="test message vue js"></message-comp>
+    <vue-table v-bind:data="items"></vue-table>
+
+
+    <div>
+        <h1>--- SEPARATOR ---</h1>
+        <div v-for="item in items">
+            <p>{{item.name}} - {{item.id}}</p>
+            <div v-if="item.childrenCategories != null">
+                <vue-table v-bind:data="item.childrenCategories"></vue-table>
+            </div>
+        </div>
+    </div>
 </div>
 
 
+
+
+<script src="~/js/VueScripts/Components/Admin/admin.js"></script>
 <script>
     var app = new Vue({
         el: '#application',
         data: {
             message: 'Привет, Vue! MAIN',
-            data: null
+            data: null,
+            items: [
+                {
+                    "id": 3,
+                    "name": "Продукты",
+                    "properties": null,
+                    "parentCategoryId": null,
+                    "parentCategory": null,
+                    "childrenCategories": [
+                        {
+                            "id": 4,
+                            "name": "Яблоки",
+                            "properties": null,
+                            "parentCategoryId": 3,
+                            "childrenCategories": [
+                                {
+                                    "id": 6,
+                                    "name": "Зеленые",
+                                    "properties": null,
+                                    "parentCategoryId": 4,
+                                    "childrenCategories": [
+                                        {
+                                            "id": 8,
+                                            "name": "Большие",
+                                            "properties": null,
+                                            "parentCategoryId": 6,
+                                            "childrenCategories": null,
+                                            "autoParts": null
+                                        },
+                                        {
+                                            "id": 9,
+                                            "name": "Маленькие",
+                                            "properties": null,
+                                            "parentCategoryId": 6,
+                                            "childrenCategories": null,
+                                            "autoParts": null
+                                        },
+                                        {
+                                            "id": 11,
+                                            "name": "Средние",
+                                            "properties": null,
+                                            "parentCategoryId": 6,
+                                            "childrenCategories": null,
+                                            "autoParts": null
+                                        }
+                                    ],
+                                    "autoParts": null
+                                },
+                                {
+                                    "id": 7,
+                                    "name": "Красные",
+                                    "properties": null,
+                                    "parentCategoryId": 4,
+                                    "childrenCategories": null,
+                                    "autoParts": null
+                                }
+                            ],
+                            "autoParts": null
+                        },
+                        {
+                            "id": 5,
+                            "name": "Сыры",
+                            "properties": null,
+                            "parentCategoryId": 3,
+                            "childrenCategories": null,
+                            "autoParts": null
+                        }
+                    ],
+                    "autoParts": null
+                }
+            ]
         },
         mounted() {
-
+            
         }
     })
 </script>

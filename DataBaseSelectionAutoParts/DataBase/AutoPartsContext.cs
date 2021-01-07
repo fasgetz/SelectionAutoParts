@@ -40,6 +40,7 @@ namespace DataBaseSelectionAutoParts.DataBase
         public AutoPartsContext(DbContextOptions<AutoPartsContext> options)
             : base(options)
         {
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,6 +49,8 @@ namespace DataBaseSelectionAutoParts.DataBase
             {
                 optionsBuilder.UseSqlServer("Server=tcp: 192.168.1.66, 1433;Database=AutoParts;Trusted_Connection=False;MultipleActiveResultSets=false;User ID=fasgetz;Password=andrey061");
             }
+
+            optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataBaseSelectionAutoParts\DataBaseSelectionAutoParts.csproj" />
+    <ProjectReference Include="..\Services_WebSelectionAutoParts\Services_WebSelectionAutoParts.csproj" />
   </ItemGroup>
 
 </Project>

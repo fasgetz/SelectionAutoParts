@@ -4,6 +4,12 @@
         <name>API_WebSelectionAutoParts</name>
     </assembly>
     <members>
+        <member name="M:API_WebSelectionAutoParts.Controllers.CategoryController.GetAllCategories">
+            <summary>
+            Полный перечень категорий
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:API_WebSelectionAutoParts.Controllers.WeatherForecastController.GetCountries">
             <summary>
             Тестируем возвращение результатов

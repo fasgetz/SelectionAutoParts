@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_WebSelectionAutoParts",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_SelectionAutoParts", "Web_SelectionAutoParts\Web_SelectionAutoParts.csproj", "{F9AE068A-C3CE-4C8A-8D1C-323366B04F88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services_WebSelectionAutoParts", "Services_WebSelectionAutoParts\Services_WebSelectionAutoParts.csproj", "{200AD841-7DF7-42F7-B29F-996155104738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services_WebSelectionAutoParts", "Services_WebSelectionAutoParts\Services_WebSelectionAutoParts.csproj", "{200AD841-7DF7-42F7-B29F-996155104738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,14 @@
+/* Категории */
+
+.categories-list li {
+    list-style-type: none;
+    /* Убираем маркеры */
+}
+
+.categories-list .row:hover {
+    background: rgba(0,0,0,.1);
+}
+
+.categories-list > .item > .container {
+    border: 1px solid lightgrey;
+}

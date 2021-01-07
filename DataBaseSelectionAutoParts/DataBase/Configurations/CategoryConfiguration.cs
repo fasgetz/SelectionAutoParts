@@ -23,7 +23,7 @@ namespace DataBaseSelectionAutoParts.DataBase.Configurations
 
                 .HasForeignKey(i => i.ParentCategoryId)
                 
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(i => i.ParentCategoryId).IsRequired(false);
             

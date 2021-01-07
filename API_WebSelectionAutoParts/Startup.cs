@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Services_WebSelectionAutoParts.Realisation;
+using Services_WebSelectionAutoParts.Services;
 using System;
 using System.IO;
 using System.Reflection;
@@ -30,6 +32,14 @@ namespace API_WebSelectionAutoParts
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", p =>
+                {
+                    p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_WebSelectionAutoParts", Version = "v1" });
@@ -47,6 +57,9 @@ namespace API_WebSelectionAutoParts
             // Подключаем контекст базы данных
             services.AddDbContext<AutoPartsContext>(options =>
                 options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
+
+            // Подключаем сервисы
+            services.AddScoped<ICategoriesService, CategoriesService>();
 
         }
 
@@ -66,6 +79,7 @@ namespace API_WebSelectionAutoParts
 
             app.UseStaticFiles(); // For the wwwroot folder if you need it
 
+            app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
 
