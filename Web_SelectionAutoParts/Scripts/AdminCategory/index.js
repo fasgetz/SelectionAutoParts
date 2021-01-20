@@ -9,8 +9,6 @@ import tree from './tree.vue'
 new Vue({
     el: "#editCategory",
     mounted() {
-
-
         axios.get((urlApp + 'category/all'))
             .then(response => {
                 this.treeData = response.data
@@ -143,10 +141,12 @@ new Vue({
 
 
         },
-
-
-
-
+        editItemClick: function () {
+            if (this.selectedItem != null) {
+                this.editItem = true
+                this.addedItem = false
+            }
+        },
         editItemForm: function (itemId) {
 
 
@@ -189,6 +189,9 @@ new Vue({
                 this.rows.splice(this.selectedItem.originalIndex, 1)
 
                 this.selectedItem = null
+
+                // Послать запрос на сохранение (или перерендерить таблицу)
+                
             }
 
 

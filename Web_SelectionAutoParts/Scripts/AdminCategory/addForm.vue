@@ -1,6 +1,5 @@
 <template>
     <div v-if="data != null">
-        <p>{{data}}</p>
         <h3 class="text-center">
             <span v-if="editdata == null">Добавление поля категории</span>
             <span v-else>Редактирование поля категории</span>
