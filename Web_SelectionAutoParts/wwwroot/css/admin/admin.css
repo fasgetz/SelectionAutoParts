@@ -12,3 +12,7 @@
 .categories-list > .item > .container {
     border: 1px solid lightgrey;
 }
+
+.clickItem {
+    background: rgba(0,0,0,.1);
+}

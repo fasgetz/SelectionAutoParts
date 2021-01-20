@@ -31,35 +31,35 @@ new Vue({
             rows: [],
             columns: [
                 {
-                    label: 'Название',
+                    label: 'РќР°Р·РІР°РЅРёРµ',
                     field: 'name',
                 },
                 {
-                    label: 'Тип',
+                    label: 'РўРёРї',
                     field: 'inputType',
                 },
                 {
-                    label: 'Обязательное',
+                    label: 'РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ',
                     field: 'required',
                     type: 'boolean',
                 },
                 {
-                    label: 'Минимальное число',
+                    label: 'РњРёРЅРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ',
                     field: 'min',
                     type: 'number',
                 },
                 {
-                    label: 'Максимальное число',
+                    label: 'РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ',
                     field: 'max',
                     type: 'number',
                 },
                 {
-                    label: 'Минимум символов',
+                    label: 'РњРёРЅРёРјСѓРј СЃРёРјРІРѕР»РѕРІ',
                     field: 'minLength',
                     type: 'number',
                 },
                 {
-                    label: 'Максимум символов',
+                    label: 'РњР°РєСЃРёРјСѓРј СЃРёРјРІРѕР»РѕРІ',
                     field: 'maxLength',
                     type: 'number',
                 },
@@ -68,14 +68,14 @@ new Vue({
     },
     methods: {
         makeFolder: function (item) {
-            // Здесь создается подкатегория
+            // Р—РґРµСЃСЊ СЃРѕР·РґР°РµС‚СЃСЏ РїРѕРґРєР°С‚РµРіРѕСЂРёСЏ
             //alert(item.id)
             Vue.set(item, "childrenCategories", []);
             this.addItem(item);
         },
         addItem: function (item) {
             alert('abc')
-            // Здесь создается итем в подкатегории
+            // Р—РґРµСЃСЊ СЃРѕР·РґР°РµС‚СЃСЏ РёС‚РµРј РІ РїРѕРґРєР°С‚РµРіРѕСЂРёРё
             item.childrenCategories.push({
                 name: "new stuff"
             });
@@ -85,7 +85,7 @@ new Vue({
         editableItem: function (item) {
 
             //alert('asd')
-            // Прозвести замену
+            // РџСЂРѕР·РІРµСЃС‚Рё Р·Р°РјРµРЅСѓ
             let obj = {
                 name: item.name,
                 inputType: item.inputType,
@@ -128,8 +128,8 @@ new Vue({
                 .then(response => {
 
                     $("#editCategoryForm").html(response.data)
-                    // если updated == true, то свернуть блок редактирования. Иначе вывести ERROR
-                    // В СЛУЧАЕ УСПЕШНОГО ЭДИТИНГА НАДО ОБНОВИТЬ ДЕРЕВО КАТЕГОРИЙ !!!
+                    // РµСЃР»Рё updated == true, С‚Рѕ СЃРІРµСЂРЅСѓС‚СЊ Р±Р»РѕРє СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ. РРЅР°С‡Рµ РІС‹РІРµСЃС‚Рё ERROR
+                    // Р’ РЎР›РЈР§РђР• РЈРЎРџР•РЁРќРћР“Рћ Р­Р”РРўРРќР“Рђ РќРђР”Рћ РћР‘РќРћР’РРўР¬ Р”Р•Р Р•Р’Рћ РљРђРўР•Р“РћР РР™ !!!
 
                     if (response.status == 200) {
                         alert('true updated')
@@ -175,11 +175,13 @@ new Vue({
             this.addedItem = true
             this.editItem = false
         },
-        addItem: function (item) {
+        addItemRow: function (item) {
             $(".clickable").removeClass("clickItem")
             this.addedItem = false
 
             this.rows.push(item)
+
+            alert(this.rows.count)
         },
         removeItem: function () {
             if (this.selectedItem != null) {

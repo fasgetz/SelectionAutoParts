@@ -23,7 +23,7 @@
                       v-bind:item="child"
                       v-bind:make-folder="$emit('make-folder', $event)"
                       v-bind:add-item="$emit('add-item', $event)"></tree>
-                <li class="btn btn-primary add p-1 m-1" v-on:click="addItem">Добавить</li>
+                <li class="btn btn-primary add p-1 m-1" v-on:click="addItem">Р”РѕР±Р°РІРёС‚СЊ</li>
 
             </ul>
         </div>
@@ -52,7 +52,7 @@
         },
         methods: {
             addItem: function () {
-                // Логика добавления итема
+                // Р›РѕРіРёРєР° РґРѕР±Р°РІР»РµРЅРёСЏ РёС‚РµРјР°
 
                 this.item.childrenCategories.push({
                     name: "new stuff"
@@ -62,13 +62,13 @@
                 this.$emit("edit", item);
             },
             editItem: function () {
-                // Функционал редактирования (перейти на страницу редактирования)
+                // Р¤СѓРЅРєС†РёРѕРЅР°Р» СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ (РїРµСЂРµР№С‚Рё РЅР° СЃС‚СЂР°РЅРёС†Сѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ)
 
                 this.$emit("edit", this.item.id);
 
             },
             removeItem: function () {
-                // Функционал удаления (удалить)
+                // Р¤СѓРЅРєС†РёРѕРЅР°Р» СѓРґР°Р»РµРЅРёСЏ (СѓРґР°Р»РёС‚СЊ)
                 //alert(this.item.id)
             },
             toggle: function () {

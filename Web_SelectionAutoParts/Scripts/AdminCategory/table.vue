@@ -1,6 +1,6 @@
-<template>
+<template>    
     <vue-good-table :columns="mycolumns"
-                    :rows="myrows"
+                    :rows="rows"
                     @on-row-click="onRowClick"
                     :search-options="{
                         enabled: true
@@ -9,7 +9,7 @@
     enabled: true,
     nextLabel: 'next',
     prevLabel: 'prev',
-    rowsPerPageLabel: 'Строк на странице',
+    rowsPerPageLabel: 'РЎС‚СЂРѕРє РЅР° СЃС‚СЂР°РЅРёС†Рµ',
     ofLabel: 'of',
     pageLabel: 'page', // for 'pages' mode
     allLabel: 'All',
@@ -43,7 +43,7 @@
         mounted() {
 
         },
-        props: ['myrows', 'mycolumns'],
+        props: ['rows', 'mycolumns'],
         components: {
             VueGoodTable
         },

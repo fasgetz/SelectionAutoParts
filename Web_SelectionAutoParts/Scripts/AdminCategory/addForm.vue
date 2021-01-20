@@ -1,38 +1,39 @@
 <template>
     <div v-if="data != null">
+        <p>{{data}}</p>
         <h3 class="text-center">
-            <span v-if="editdata == null">Добавление поля категории</span>
-            <span v-else>Редактирование поля категории</span>
+            <span v-if="editdata == null">Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕР»СЏ РєР°С‚РµРіРѕСЂРёРё</span>
+            <span v-else>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕР»СЏ РєР°С‚РµРіРѕСЂРёРё</span>
         </h3>
         <div class="form-group row p-1">
-            <label class="col-sm-2 col-form-label">Название</label>
+            <label class="col-sm-2 col-form-label">РќР°Р·РІР°РЅРёРµ</label>
             <div class="col-sm-10">
-                <input minlength="5" v-model="data.name" type="text" class="form-control" placeholder="Введите название поля">
+                <input minlength="5" v-model="data.name" type="text" class="form-control" placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРѕР»СЏ">
             </div>
         </div>
         <div class="form-group row p-1">
-            <label class="col-sm-2 col-form-label">Тип</label>
+            <label class="col-sm-2 col-form-label">РўРёРї</label>
             <div class="col-sm-10">
                 <select v-on:change="ChangeInputType(data.inputType)" required v-model="data.inputType" class="form-control">
-                    <option value="text">Текстовый</option>
-                    <option value="number">Числовой</option>
+                    <option value="text">РўРµРєСЃС‚РѕРІС‹Р№</option>
+                    <option value="number">Р§РёСЃР»РѕРІРѕР№</option>
                 </select>
             </div>
         </div>
         <fieldset class="form-group">
             <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Обязательное заполнение</legend>
+                <legend class="col-form-label col-sm-2 pt-0">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ Р·Р°РїРѕР»РЅРµРЅРёРµ</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" v-model="data.required" value="true" checked>
                         <label class="form-check-label" for="gridRadios1">
-                            Да
+                            Р”Р°
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" v-model="data.required" value="false">
                         <label class="form-check-label" for="gridRadios2">
-                            Нет
+                            РќРµС‚
                         </label>
                     </div>
                 </div>
@@ -40,36 +41,36 @@
         </fieldset>
         <div v-if="data.inputType == 'number'">
             <div class="form-group row p-1">
-                <label class="col-sm-2 col-form-label">Минимум</label>
+                <label class="col-sm-2 col-form-label">РњРёРЅРёРјСѓРј</label>
                 <div class="col-sm-10">
-                    <input step="0.01" v-model="data.min" type="number" class="form-control" placeholder="Введите минимальное число">
+                    <input step="0.01" v-model="data.min" type="number" class="form-control" placeholder="Р’РІРµРґРёС‚Рµ РјРёРЅРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ">
                 </div>
             </div>
             <div class="form-group row p-1">
-                <label class="col-sm-2 col-form-label">Максимум</label>
+                <label class="col-sm-2 col-form-label">РњР°РєСЃРёРјСѓРј</label>
                 <div class="col-sm-10">
-                    <input step="0.01" v-model="data.max" type="number" class="form-control" placeholder="Введите максимальное число">
+                    <input step="0.01" v-model="data.max" type="number" class="form-control" placeholder="Р’РІРµРґРёС‚Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ">
                 </div>
             </div>
         </div>
         <div v-if="data.inputType == 'text'">
             <div class="form-group row p-1">
-                <label class="col-sm-2 col-form-label">Минимум</label>
+                <label class="col-sm-2 col-form-label">РњРёРЅРёРјСѓРј</label>
                 <div class="col-sm-10">
-                    <input step="1" v-model="data.minLength" type="number" class="form-control" placeholder="Введите минимальное количество символов">
+                    <input step="1" v-model="data.minLength" type="number" class="form-control" placeholder="Р’РІРµРґРёС‚Рµ РјРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ">
                 </div>
             </div>
             <div class="form-group row p-1">
-                <label class="col-sm-2 col-form-label">Максимум</label>
+                <label class="col-sm-2 col-form-label">РњР°РєСЃРёРјСѓРј</label>
                 <div class="col-sm-10">
-                    <input step="1" v-model="data.maxLength" type="number" class="form-control" placeholder="Введите максимальное количество символов">
+                    <input step="1" v-model="data.maxLength" type="number" class="form-control" placeholder="Р’РІРµРґРёС‚Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ">
                 </div>
             </div>
         </div>
         <div class="pt-3 text-center">
-            <button v-if="editdata == null" v-on:click="addItem" class="btn btn-success">Добавить</button>
-            <button v-else v-on:click.prevent="saveEditItem" class="btn btn-success">Сохранить</button>
-            <button v-on:click="cancel" class="btn btn-primary">Отменить</button>
+            <button v-if="editdata == null" v-on:click="addItemRow" class="btn btn-success">Р”РѕР±Р°РІРёС‚СЊ</button>
+            <button v-else v-on:click.prevent="saveEditItem" class="btn btn-success">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
+            <button v-on:click="cancel" class="btn btn-primary">РћС‚РјРµРЅРёС‚СЊ</button>
         </div>
     </div>
 </template>
@@ -100,7 +101,7 @@
             cancel: function () {
                 this.$emit('cancel')
             },
-            addItem: function () {
+            addItemRow: function () {
 
                 this.$emit('add', this.data)
             },

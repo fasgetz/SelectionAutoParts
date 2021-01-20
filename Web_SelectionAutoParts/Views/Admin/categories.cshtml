@@ -10,6 +10,7 @@
         </div>
     </div>*@
 <div id="editCategory">
+    
     <div>
         <h1 class="text-center">Категории автозапчастей</h1>
         <div v-for="item in treeData">
@@ -24,13 +25,14 @@
     </div>
     <div v-if="category.id != null" id="editCategoryForm">
         <h2>Редактирование категории</h2>
+        <p v-for="item in rows">{{item}}</p>
         <form v-on:submit="SaveCategory">
             <div class="form-group">
                 <label>Категория</label>
                 <input v-model="category.name" type="text" class="form-control" placeholder="Название категории">
             </div>
             <h3 class="text-center">Свойства</h3>
-            <table-component v-bind:myrows="rows"
+            <table-component v-bind:rows="rows"
                              v-bind:mycolumns="columns"
                              v-on:selected="itemSelect">
             </table-component>
@@ -44,10 +46,10 @@
                 <button type="button" v-on:click="cancelEdit" class="btn btn-secondary">Отменить</button>
             </div>
             <div v-if="addedItem == true">
-                <addform-component v-on:add="addItem" v-on:cancel="addedItem = false"></addform-component>
+                <addform-component v-on:add="addItemRow" v-on:cancel="addedItem = false"></addform-component>
             </div>
             <div v-if="editItem == true && selectedItem != null">
-                <addform-component v-on:save="editableItem" v-bind:editdata="selectedItem" v-on:add="addItem" v-on:cancel="editItem = false"></addform-component>
+                <addform-component v-on:save="editableItem" v-bind:editdata="selectedItem" v-on:add="addItemRow" v-on:cancel="editItem = false"></addform-component>
             </div>
         </form>
     </div>
@@ -57,3 +59,4 @@
 <script src="~/bundle/AdminCategory.js"></script>
 
 <link href="~/css/admin/admin.css" rel="stylesheet" />
+<link href="~/css/admin/categories.css" rel="stylesheet" />
