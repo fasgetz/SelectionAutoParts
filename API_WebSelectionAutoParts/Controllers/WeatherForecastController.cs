@@ -1,5 +1,5 @@
-﻿using DataBaseSelectionAutoParts.DataBase;
-using DataBaseSelectionAutoParts.Models;
+﻿using DataBaseModels;
+using DataBaseSelectionAutoParts.DataBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

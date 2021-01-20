@@ -1,4 +1,4 @@
-﻿using DataBaseSelectionAutoParts.Models;
+﻿using DataBaseModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -17,7 +17,7 @@ namespace DataBaseSelectionAutoParts.DataBase.Configurations
             builder.HasKey(i => i.Id); // первичный ключ по номеру
 
             // 60 символов максимум у свойства Name, которое обязательно к заполнению
-            builder.Property(i => i.Name).IsRequired().HasMaxLength(60); 
+            builder.Property(i => i.Name).IsRequired().HasMaxLength(60);
         }
     }
 }

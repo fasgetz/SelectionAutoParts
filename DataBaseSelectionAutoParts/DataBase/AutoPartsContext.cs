@@ -1,6 +1,6 @@
 ﻿using System;
+using DataBaseModels;
 using DataBaseSelectionAutoParts.DataBase.Configurations;
-using DataBaseSelectionAutoParts.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -40,7 +40,7 @@ namespace DataBaseSelectionAutoParts.DataBase
         public AutoPartsContext(DbContextOptions<AutoPartsContext> options)
             : base(options)
         {
-            
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

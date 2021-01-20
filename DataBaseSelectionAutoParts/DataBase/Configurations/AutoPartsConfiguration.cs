@@ -1,4 +1,4 @@
-﻿using DataBaseSelectionAutoParts.Models;
+﻿using DataBaseModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

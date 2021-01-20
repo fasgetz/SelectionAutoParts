@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_SelectionAutoParts", "W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services_WebSelectionAutoParts", "Services_WebSelectionAutoParts\Services_WebSelectionAutoParts.csproj", "{200AD841-7DF7-42F7-B29F-996155104738}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseModels", "DataBaseModels\DataBaseModels.csproj", "{B2552F64-ECA7-4CA2-967E-E3844B9FEE2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{200AD841-7DF7-42F7-B29F-996155104738}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{200AD841-7DF7-42F7-B29F-996155104738}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{200AD841-7DF7-42F7-B29F-996155104738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2552F64-ECA7-4CA2-967E-E3844B9FEE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2552F64-ECA7-4CA2-967E-E3844B9FEE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2552F64-ECA7-4CA2-967E-E3844B9FEE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2552F64-ECA7-4CA2-967E-E3844B9FEE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

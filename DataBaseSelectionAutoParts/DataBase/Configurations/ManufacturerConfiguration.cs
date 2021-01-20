@@ -1,4 +1,4 @@
-﻿using DataBaseSelectionAutoParts.Models;
+﻿using DataBaseModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -31,9 +31,9 @@ namespace DataBaseSelectionAutoParts.DataBase.Configurations
             builder.Property(i => i.idCountry).IsRequired(); // Номер страны производителя должен быть обязательно указан
 
             // Установим максимальное количество символов 40 с обязательным заполнением для поля название производителя авто
-            builder.Property(i => i.Name).HasMaxLength(40).IsRequired();            
+            builder.Property(i => i.Name).HasMaxLength(40).IsRequired();
 
-            
+
         }
     }
 }

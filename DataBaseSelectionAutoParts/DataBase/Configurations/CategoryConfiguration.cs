@@ -1,4 +1,4 @@
-﻿using DataBaseSelectionAutoParts.Models;
+﻿using DataBaseModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -22,11 +22,11 @@ namespace DataBaseSelectionAutoParts.DataBase.Configurations
                 .WithMany(i => i.ChildrenCategories)
 
                 .HasForeignKey(i => i.ParentCategoryId)
-                
+
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(i => i.ParentCategoryId).IsRequired(false);
-            
+
 
 
 

@@ -1,155 +1,59 @@
-﻿
-
-
-<div id="application">
-    <p>{{message}}</p>
-    <p>{{data}}</p>
-</div>
-
-<div id="demo">
-    <p>{{treeData}}</p>
-    <h1 class="text-center">AVERAGE !!! ADMIN TABLE!</h1>
-    <div v-for="item in treeData">
-        <ul class="categories-list p-0">
-            <tree-item class="item"
-                       v-bind:item="item"
-                       v-bind:make-folder="makeFolder"
-                       v-bind:add-item="addItem"></tree-item>
-        </ul>
+﻿@*<div id="demo">
+        <h1 class="text-center">Категории автозапчастей</h1>
+        <div v-for="item in treeData">
+            <ul class="categories-list p-0">
+                <tree-item class="item"
+                           v-bind:item="item"
+                           v-bind:make-folder="makeFolder"
+                           v-bind:add-item="addItem"></tree-item>
+            </ul>
+        </div>
+    </div>*@
+<div id="editCategory">
+    <div>
+        <h1 class="text-center">Категории автозапчастей</h1>
+        <div v-for="item in treeData">
+            <ul class="categories-list p-0">
+                <tree class="item"
+                      v-on:edit="editItemForm"
+                      v-bind:item="item"
+                      v-bind:make-folder="makeFolder"
+                      v-bind:add-item="addItem"></tree>
+            </ul>
+        </div>
+    </div>
+    <div v-if="category.id != null" id="editCategoryForm">
+        <h2>Редактирование категории</h2>
+        <form v-on:submit="SaveCategory">
+            <div class="form-group">
+                <label>Категория</label>
+                <input v-model="category.name" type="text" class="form-control" placeholder="Название категории">
+            </div>
+            <h3 class="text-center">Свойства</h3>
+            <table-component v-bind:myrows="rows"
+                             v-bind:mycolumns="columns"
+                             v-on:selected="itemSelect">
+            </table-component>
+            <div class="m-3 text-center">
+                <button class="btn btn-primary" v-on:click.prevent="addItemForm">Добавить</button>
+                <button class="btn btn-primary" v-on:click.prevent="editItemForm">Редактировать</button>
+                <button class="btn btn-primary" type="button" v-on:click="removeItem">Удалить</button>
+            </div>
+            <div class="m-3 text-center">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+                <button type="button" v-on:click="cancelEdit" class="btn btn-secondary">Отменить</button>
+            </div>
+            <div v-if="addedItem == true">
+                <addform-component v-on:add="addItem" v-on:cancel="addedItem = false"></addform-component>
+            </div>
+            <div v-if="editItem == true && selectedItem != null">
+                <addform-component v-on:save="editableItem" v-bind:editdata="selectedItem" v-on:add="addItem" v-on:cancel="editItem = false"></addform-component>
+            </div>
+        </form>
     </div>
 </div>
 
-<!-- item template -->
-<script type="text/x-template" id="item-template">
-  <li>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md col-12">
-          <div
-            :class="{bold: isFolder}"
-            v-on:click="toggle"
-            v-on:dblclick="makeFolder">
-            {{ item.name }}
-            <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-primary p-1 m-1" v-on:click="editItem"><i class="far fa-edit"></i></button>
-          <button class="btn btn-primary p-1 m-1" v-on:click="removeItem"><i class="fas fa-trash"></i></button>
-        </div>
-      </div>
 
-      <ul v-show="isOpen" v-if="isFolder">
-
-        <tree-item
-          class="item"
-          v-for="(child, index) in item.childrenCategories"
-          :key="index"
-          v-bind:item="child"
-          v-bind:make-folder="$emit('make-folder', $event)"
-          v-bind:add-item="$emit('add-item', $event)"
-        ></tree-item>
-        <li class="btn btn-primary add p-1 m-1" v-on:click="$emit('add-item', item)">Добавить</li>
-
-      </ul>
-    </div>
-
-
-
-  </li>
-</script>
-<script>
-
-    // define the tree-item component
-    Vue.component("tree-item", {
-        template: "#item-template",
-        props: {
-            item: Object
-        },
-        data: function () {
-            return {
-                isOpen: false
-            };
-        },
-        computed: {
-            isFolder: function () {
-                return this.item.childrenCategories && this.item.childrenCategories.length;
-            }
-        },
-        methods: {
-            editItem: function () {
-                // Функционал редактирования (перейти на страницу редактирования)
-
-                //alert(this.item.id)
-            },
-            removeItem: function () {
-                // Функционал редактирования (перейти на страницу редактирования)
-
-                alert(this.item.id)
-            },
-            toggle: function () {
-                if (this.isFolder) {
-                    this.isOpen = !this.isOpen;
-                }
-            },
-            makeFolder: function () {
-                if (!this.isFolder) {
-                    this.$emit("make-folder", this.item);
-                    this.isOpen = true;
-                }
-            }
-        }
-    });
-
-    // boot up the demo
-    var demo = new Vue({
-        el: "#demo",
-        data: {
-            treeData: null
-        },
-        mounted() {
-            axios.get((urlApp + 'category/all'))
-                .then(response => {
-                    this.treeData = response.data
-                });
-        },
-        methods: {
-
-            makeFolder: function (item) {
-                // Здесь создается подкатегория
-                //alert(item.id)
-
-                Vue.set(item, "childrenCategories", []);
-                this.addItem(item);
-            },
-            addItem: function (item) {
-                //alert(item.id)
-                // Здесь создается итем в подкатегории
-
-
-                item.childrenCategories.push({
-                    name: "new stuff"
-                });
-            }
-        }
-    });
-</script>
-
-<script>
-    var app = new Vue({
-        el: '#application',
-        data: {
-            message: 'Категории автозапчастей',
-            data: null
-        },
-        mounted() {
-
-            axios.get((urlApp + 'category/all'))
-                .then(response => {
-                    this.data = response.data
-                });
-        }
-    })
-</script>
+<script src="~/bundle/AdminCategory.js"></script>
 
 <link href="~/css/admin/admin.css" rel="stylesheet" />

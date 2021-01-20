@@ -6,7 +6,10 @@ import testingComponent from './homescript.vue'
 
 
 new Vue({
-    el: "#app",
+    el: "#application",
+    data: {
+        message: "testing"
+    },
     components: {
         homeComponent,
         testingComponent

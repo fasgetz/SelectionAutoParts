@@ -1,5 +1,5 @@
 ﻿<template>
-    <h1>testing component)</h1>
+    <h1>testing component with app</h1>
 </template>
 
 <script>
