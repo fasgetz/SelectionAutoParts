@@ -9,6 +9,7 @@ import tree from './tree.vue'
 new Vue({
     el: "#editCategory",
     mounted() {
+
         axios.get((urlApp + 'category/all'))
             .then(response => {
                 this.treeData = response.data
@@ -17,6 +18,7 @@ new Vue({
     },
     data: function () {
         return {
+            editClick: false,
             treeData: null,
             category: {
                 id: null,
@@ -65,6 +67,18 @@ new Vue({
         };
     },
     methods: {
+        updated: function () {
+
+            this.editClick = false
+
+            axios.get((urlApp + 'category/all'))
+                .then(response => {
+                    this.treeData = response.data
+                });
+
+            //this.rows = null
+            //this.category = null
+        },
         makeFolder: function (item) {
             // Здесь создается подкатегория
             //alert(item.id)
@@ -125,7 +139,7 @@ new Vue({
             axios.put((urlApp + 'category/EditCategory'), obj)
                 .then(response => {
 
-                    $("#editCategoryForm").html(response.data)
+                    //$("#editCategoryForm").html(response.data)
                     // если updated == true, то свернуть блок редактирования. Иначе вывести ERROR
                     // В СЛУЧАЕ УСПЕШНОГО ЭДИТИНГА НАДО ОБНОВИТЬ ДЕРЕВО КАТЕГОРИЙ !!!
 
@@ -148,7 +162,7 @@ new Vue({
             }
         },
         editItemForm: function (itemId) {
-
+            this.editClick = true
 
             axios.get((urlApp + 'category/get'), {
                 params: {
@@ -156,7 +170,7 @@ new Vue({
                 }
             })
                 .then(response => {
-                    console.log(response.data)
+                    console.log("data loaded category: ", response.data)
 
                     this.category = response.data.category
 
@@ -170,6 +184,8 @@ new Vue({
             this.selectedItem = item
         },
         addItemForm: function () {
+            alert('added item')
+
             $(".clickable").removeClass("clickItem")
             this.selectedItem = null
             this.addedItem = true
@@ -181,7 +197,6 @@ new Vue({
 
             this.rows.push(item)
 
-            alert(this.rows.count)
         },
         removeItem: function () {
             if (this.selectedItem != null) {
