@@ -121,5 +121,47 @@ namespace API_WebSelectionAutoParts.Controllers
 
             return Ok($"Категория \"{category.Name}\" успешно обновлена");
         }
+
+
+
+        /// <summary>
+        /// Добавить категорию
+        /// </summary>
+        /// <remarks>
+        /// Пример запроса:
+        ///
+        ///     POST
+        ///     {
+        ///        "idParent": 123,
+        ///        "name": "NameValue",
+        ///        "properties": {
+        ///             [
+        ///                 {"name":"Размер диска","inputType":"text","required":true,"min":null,"max":null,"minLength":null,"maxLength":null},
+        ///                 {"name":"Размер шины","inputType":"number","required":true,"min":null,"max":null,"minLength":null,"maxLength":null},
+        ///                 {"name":"Ширина покрышки","inputType":"number","required":true,"min":null,"max":null,"minLength":null,"maxLength":null},
+        ///                 {"name":"Высота профиля","inputType":"number","required":true,"min":null,"max":null,"minLength":null,"maxLength":null}
+        ///             ]
+        ///         }
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="category">Категория (json)</param>
+        /// <returns>True в случае успешного добавления. Иначе false</returns>
+        /// <response code="200">Успешный запрос</response>
+        /// <response code="400">В случае если передали пустой параметр</response>
+        /// <response code="404">Неудачный запрос на добавление</response>
+        [HttpPost("AddCategory")]
+        public async Task<IActionResult> AddCategory(Category category)
+        {
+            if (category == null)
+                return BadRequest("Передан пустой параметр");
+
+            var added = await service.addCategoryAsync(category);
+
+            if (added == false)
+                return new BadRequestObjectResult($"Не удалось добавить категорию {category.Name}") { StatusCode = 404 };
+
+            return Ok($"Категория {category.Name} успешно добавлена!");
+        }
     }
 }

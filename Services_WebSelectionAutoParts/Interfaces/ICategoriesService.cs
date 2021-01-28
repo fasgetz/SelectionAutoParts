@@ -8,6 +8,12 @@ namespace Services_WebSelectionAutoParts.Services
 {
     public interface ICategoriesService
     {
+        /// <summary>
+        /// Добавление категории
+        /// </summary>
+        /// <param name="category">Категория</param>
+        /// <returns>TRUE в случае успеха</returns>
+        public Task<bool> addCategoryAsync(Category category);
 
         /// <summary>
         /// Получить полный список категорий

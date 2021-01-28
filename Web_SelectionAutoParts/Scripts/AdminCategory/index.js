@@ -3,6 +3,7 @@ import axios from 'axios'
 import addformComponent from './addForm.vue'
 import tableComponent from './table.vue'
 import tree from './tree.vue'
+import addcategoryComponent from './addcategory.vue'
 
 
 
@@ -18,6 +19,7 @@ new Vue({
     },
     data: function () {
         return {
+            idParent: null, // редактирование категории
             editClick: false,
             treeData: null,
             category: {
@@ -67,6 +69,11 @@ new Vue({
         };
     },
     methods: {
+        addedcategory: function () {
+            this.idParent = null
+
+            this.updated()
+        },
         updated: function () {
 
             this.editClick = false
@@ -85,15 +92,16 @@ new Vue({
             Vue.set(item, "childrenCategories", []);
             this.addItem(item);
         },
+        // Добавление категории
         addItem: function (item) {
             alert('abc')
             // Здесь создается итем в подкатегории
+
+
             item.childrenCategories.push({
-                name: "new stuff"
+                name: "new stuff test"
             });
         },
-
-
         editableItem: function (item) {
 
             //alert('asd')
@@ -161,6 +169,11 @@ new Vue({
                 this.addedItem = false
             }
         },
+        addCategory: function (itemId) {
+            //alert('items is ' + itemId)
+
+            this.idParent = itemId
+        },
         editItemForm: function (itemId) {
             this.editClick = true
 
@@ -216,6 +229,7 @@ new Vue({
         axios,
         addformComponent,
         tableComponent,
-        tree
+        tree,
+        addcategoryComponent
     }
 })

@@ -2,13 +2,14 @@
 
 
 
-<div id="editCategory">    
+<div id="editCategory">
     <div>
         <h1 class="text-center">Категории автозапчастей</h1>
         <div v-for="item in treeData">
             <ul class="categories-list p-0">
                 <tree class="item"
                       v-on:edit="editItemForm"
+                      v-on:addcategory="addCategory"
                       v-bind:item="item"
                       v-bind:make-folder="makeFolder"
                       v-bind:add-item="addItem"></tree>
@@ -17,49 +18,23 @@
     </div>
     @*<div v-if="category.id != null" id="editCategoryForm">*@
 
-<div id="editCategoryForm" v-show="editClick == true">
-    <table-component
-                     v-bind:mycategory="category"
-                     v-bind:myrows="rows"
-                     v-bind:mycolumns="columns"
-                     v-on:updated="updated"
-                     v-on:canceled="editClick = false"
-                     v-on:add="addItemForm"
-                     v-on:selected="itemSelect">
-    </table-component>
-    <!--<form v-on:submit="SaveCategory">-->
-    @*<h2>Редактирование категории EDIT CATEGORY</h2>
-        <div class="form-group">
-            <label>Категория</label>
-            <input v-model="category.name" type="text" class="form-control" placeholder="Название категории">
-        </div>
-        <h3 class="text-center">Свойства</h3>*@
-    @*<table-component v-bind:myrows="rows"
+    <div id="editCategoryForm" v-show="editClick == true">
+        <table-component v-bind:mycategory="category"
+                         v-bind:myrows="rows"
                          v-bind:mycolumns="columns"
+                         v-on:updated="updated"
+                         v-on:canceled="editClick = false"
                          v-on:add="addItemForm"
                          v-on:selected="itemSelect">
-        </table-component>*@
-    @*            <div class="m-3 text-center">
-            <button class="btn btn-primary" v-on:click.prevent="addItemForm">Добавить</button>
-            <button class="btn btn-primary" v-on:click.prevent="editItemClick">Редактировать</button>
-            <button class="btn btn-primary" type="button" v-on:click="removeItem">Удалить</button>
-        </div>*@
-    @*            <div class="m-3 text-center">
-            <button type="submit" class="btn btn-success">Сохранить</button>
-            <button type="button" v-on:click="cancelEdit" class="btn btn-secondary">Отменить</button>
-        </div>
-        <div v-if="addedItem == true">
-            <addform-component v-on:add="addItemRow" v-on:cancel="addedItem = false"></addform-component>
-        </div>
-        <div v-if="editItem == true && selectedItem != null">
-            <addform-component v-on:save="editableItem" v-bind:editdata="selectedItem" v-on:add="addItemRow" v-on:cancel="editItem = false"></addform-component>
-        </div>*@
-    <!--</form>-->
-</div>
+        </table-component>
+    </div>
+    <div v-if="idParent != null">
+        <h3 class="text-center">Добавление подкатегории</h3>
+        <addcategory-component v-on:cancel="idParent = null" v-on:added="addedcategory" v-bind:id="idParent"></addcategory-component>
+    </div>
 </div>
 
 
 <script src="~/bundle/AdminCategory.js"></script>
-
 <link href="~/css/admin/admin.css" rel="stylesheet" />
 <link href="~/css/admin/categories.css" rel="stylesheet" />

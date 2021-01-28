@@ -18,7 +18,27 @@ namespace Services_WebSelectionAutoParts.Realisation
         {
             this.db = db;
         }
+        
 
+        /// <summary>
+        /// Добавление категории
+        /// </summary>
+        /// <param name="category">Категория</param>
+        /// <returns>TRUE в случае успеха</returns>
+        public async Task<bool> addCategoryAsync(Category category)
+        {
+            try
+            {
+                db.categories.Add(category);
+                await db.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Получить полный список категорий

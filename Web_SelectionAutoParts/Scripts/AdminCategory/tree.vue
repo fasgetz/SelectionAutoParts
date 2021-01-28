@@ -20,6 +20,7 @@
                       v-for="(child, index) in item.childrenCategories"
                       :key="index"
                       v-on:edit="editItemForm"
+                      v-on:addcategory="addItemForm"
                       v-bind:item="child"
                       v-bind:make-folder="$emit('make-folder', $event)"
                       v-bind:add-item="$emit('add-item', $event)"></tree>
@@ -51,12 +52,17 @@
 
         },
         methods: {
+            addItemForm: function (item) {
+                this.$emit("addcategory", item);
+            },
             addItem: function () {
                 // Логика добавления итема
 
-                this.item.childrenCategories.push({
-                    name: "new stuff"
-                });
+                this.$emit("addcategory", this.item.id);
+
+                //this.item.childrenCategories.push({
+                //    name: "new stuff"
+                //});
             },
             editItemForm: function (item) {
                 this.$emit("edit", item);
