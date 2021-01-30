@@ -86,11 +86,19 @@ new Vue({
             //this.rows = null
             //this.category = null
         },
+        // Создать подкатегорию
+        addSubCategory: function (id) {
+            //alert(id)
+
+            this.idParent = id
+        },
         makeFolder: function (item) {
             // Здесь создается подкатегория
             //alert(item.id)
-            Vue.set(item, "childrenCategories", []);
-            this.addItem(item);
+
+            alert('make)')
+            //Vue.set(item, "childrenCategories", []);
+            //this.addItem(item);
         },
         // Добавление категории
         addItem: function (item) {

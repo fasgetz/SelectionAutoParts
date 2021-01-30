@@ -31,8 +31,7 @@
 
 
                 // Логика запроса
-                axios.post((urlApp + 'category/AddCategory'), this.data)
-                    .then(response => {
+                axios.post((urlApp + 'category/AddCategory'), this.data).then(response => {
 
                         //$("#editCategoryForm").html(response.data)
                         // если updated == true, то свернуть блок редактирования. Иначе вывести ERROR

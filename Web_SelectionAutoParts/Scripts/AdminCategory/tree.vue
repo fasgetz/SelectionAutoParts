@@ -4,15 +4,15 @@
             <div class="row align-items-center">
                 <div class="col-md col-12">
                     <div :class="{bold: isFolder}"
-                         v-on:click="toggle"
-                         v-on:dblclick="makeFolder">
+                         
+                         v-on:click="toggle">
                         {{ item.name }}
                         <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <button class="btn btn-primary p-1 m-1" v-on:click="editItem"><i class="far fa-edit"></i></button>
-                    <button class="btn btn-primary p-1 m-1" v-on:click="removeItem"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-primary p-1 m-1" v-on:click="addSubCategory"><i class="fas fa-folder-plus"></i></button>
                 </div>
             </div>
             <ul v-show="isOpen" v-if="isFolder">
@@ -21,6 +21,7 @@
                       :key="index"
                       v-on:edit="editItemForm"
                       v-on:addcategory="addItemForm"
+                      v-on:addsubcategory="addSubCategoryTree"
                       v-bind:item="child"
                       v-bind:make-folder="$emit('make-folder', $event)"
                       v-bind:add-item="$emit('add-item', $event)"></tree>
@@ -52,6 +53,19 @@
 
         },
         methods: {
+            // Добавление подкатегории по клику на иконку с папкой со знаком +
+            addSubCategoryTree: function (item) {
+                
+                this.$emit("addsubcategory", item);
+            },
+            addSubCategory: function () {
+                if (this.item.childrenCategories == null)
+                    this.$emit("addsubcategory", this.item.id);
+                else
+                    alert('Невозможно добавить подкатегорию, т.к. подкатегория уже добавлена!')
+                
+            },
+
             addItemForm: function (item) {
                 this.$emit("addcategory", item);
             },
